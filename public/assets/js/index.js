@@ -25,12 +25,14 @@ $(".add-item").on("submit", function addBucketItem () {
     event.preventDefault();
 
     var newItem = {
+      userid: 1, //need to get logged in user's id
       item: $(".inputBucketItem").val().trim(),
-      type: $(".selectBucketType").val().trim()
+      type: $(".selectBucketType").val().trim(),
+      deadline: $(".inputDeadline").val().trim()
     };
 
     // Send the POST request.
-    $.ajax("/api/#####", {
+    $.ajax("/api/newitem", {
       type: "POST",
       data: newItem
     }).then(
