@@ -26,102 +26,8 @@
   <script src="assets/js/firebaseconfig.js"></script>
   <script src="assets/js/index.js"></script>
 </head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="assets\styles\styles.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<body>
-
-  <div class="jumbotron jumbotron-fluid">
-    <h1 class="title">Bucket Besties!</h1>
-    <p class="slogan">Grab a bestie and explore the world! </p>
-  </div>
-
-
-  <div id="containerForm">
-    <div class="field">
-      <h2>Login Here</h2>
-    <label class="Name">Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Text input">
-    </div>
-
-    <div class="field">
-      <label class="Email">Email</label>
-      <div class="control has-icons-left has-icons-right">
-        <input class="input is-success" type="text" placeholder="Email Address" value="Melody">
-        <span class="icon is-small is-left">
-          <i class="fas fa-user"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fas fa-check"></i>
-        </span>
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="Password">Password</label>
-      <div class="control has-icons-left has-icons-right">
-        <input class="input is-danger" type="email" placeholder="Password" value="******">
-        <span class="icon is-small is-left">
-          <i class="fas fa-envelope"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fas fa-exclamation-triangle"></i>
-        </span>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <footer id="footer">
-    <div class="container">
-      Copyright @Group 3
-    </div>
-  </footer>
-
-</body>
-
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="assets/styles/styles.css">
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <!-- Firebase Core JavaScript Link -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-  <!-- Specific Firebase products we want (Database) -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js"></script>
-  <!-- GeoFire Database -->
-  <script src="https://cdn.firebase.com/libs/geofire/5.0.1/geofire.min.js"></script>
-  <!-- JS Files -->
-  <script src="assets/js/firebaseconfig.js"></script>
-  <script src="assets/js/index.js"></script>
-</head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="assets\styles\styles.css">
 
 <body>
@@ -133,135 +39,147 @@
 
 
   <div class="form">
-    
+
     <ul class="tab-group">
       <li class="tab active"><a href="#signup">Sign Up</a></li>
       <li class="tab"><a href="#login">Log In</a></li>
     </ul>
-    
+
     <div class="tab-content">
-      <div id="signup">   
+      <div id="signup">
         <h2>Sign Up for Free</h2>
-        
-        <form action="/" method="post">
-        
-        <div class="top-row">
-          <div class="field-wrap">
-            <label>
-              First Name<span class="req">*</span>
-            </label>
-            <input type="text" required autocomplete="off" />
-          </div>
-      
-          <div class="field-wrap">
-            <label>
-              Last Name<span class="req">*</span>
-            </label>
-            <input type="text"required autocomplete="off"/>
-          </div>
-        </div>
 
-        <div class="field-wrap">
-          <label>
-            Email Address<span class="req">*</span>
-          </label>
-          <input type="email"required autocomplete="off"/>
-        </div>
-        
-        <div class="field-wrap">
-          <label>
-            Set A Password<span class="req">*</span>
-          </label>
-          <input type="password"required autocomplete="off"/>
-        </div>
-        
-        <button type="submit" class="button button-block"/>Get Started</button>
-        
+        <form action="/" method="post">
+
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                First Name<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+              <label>
+                Last Name<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+              <label>
+                User Name<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                  Zip Code<span class="req">*</span>
+                </label>
+                <input type="text" required autocomplete="off" />
+              </div>  
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email" required autocomplete="off" />
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input type="password" required autocomplete="off" />
+          </div>
+
+          <button type="submit" class="button button-block" />Get Started</button>
+
         </form>
 
       </div>
-      
-      <div id="login">   
+
+      <div id="login">
         <h3>Welcome Back!</h3>
-        
+
         <form action="/" method="post">
-        
+
           <div class="field-wrap">
-          <label>
-            Email Address<span class="req">*</span>
-          </label>
-          <input type="email"required autocomplete="off"/>
-        </div>
-        
-        <div class="field-wrap">
-          <label>
-            Password<span class="req">*</span>
-          </label>
-          <input type="password"required autocomplete="off"/>
-        </div>
-        
-        <p class="forgot"><a href="#">Forgot Password?</a></p>
-        
-        <button class="button button-block"/>Log In</button>
-        
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email" required autocomplete="off" />
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Password<span class="req">*</span>
+            </label>
+            <input type="password" required autocomplete="off" />
+          </div>
+
+          <p class="forgot"><a href="#">Forgot Password?</a></p>
+
+          <button type="submit" class="button button-block" />Log In</button>
+
         </form>
 
       </div>
-      
+
     </div>
-    
-</div> 
 
-<script>
+  </div>
 
-$('.form').find('input, textarea').on('keyup blur focus', function (e) {
-  
-  var $this = $(this),
-      label = $this.prev('label');
+  <script>
+    $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
-	  if (e.type === 'keyup') {
-			if ($this.val() === '') {
+      var $this = $(this),
+        label = $this.prev('label');
+
+      if (e.type === 'keyup') {
+        if ($this.val() === '') {
           label.removeClass('active highlight');
         } else {
           label.addClass('active highlight');
         }
-    } else if (e.type === 'blur') {
-    	if( $this.val() === '' ) {
-    		label.removeClass('active highlight'); 
-			} else {
-		    label.removeClass('highlight');   
-			}   
-    } else if (e.type === 'focus') {
-      
-      if( $this.val() === '' ) {
-    		label.removeClass('highlight'); 
-			} 
-      else if( $this.val() !== '' ) {
-		    label.addClass('highlight');
-			}
-    }
+      } else if (e.type === 'blur') {
+        if ($this.val() === '') {
+          label.removeClass('active highlight');
+        } else {
+          label.removeClass('highlight');
+        }
+      } else if (e.type === 'focus') {
 
-});
+        if ($this.val() === '') {
+          label.removeClass('highlight');
+        } else if ($this.val() !== '') {
+          label.addClass('highlight');
+        }
+      }
 
-$('.tab a').on('click', function (e) {
-  
-  e.preventDefault();
-  
-  $(this).parent().addClass('active');
-  $(this).parent().siblings().removeClass('active');
-  
-  target = $(this).attr('href');
+    });
 
-  $('.tab-content > div').not(target).hide();
-  
-  $(target).fadeIn(600);
-  
-});
-</script>
+    $('.tab a').on('click', function (e) {
 
-<div class="footer">
-  <p>Copyright@Group3</p>
-</div>
+      e.preventDefault();
+
+      $(this).parent().addClass('active');
+      $(this).parent().siblings().removeClass('active');
+
+      target = $(this).attr('href');
+
+      $('.tab-content > div').not(target).hide();
+
+      $(target).fadeIn(600);
+
+    });
+  </script>
+
+  <div class="footer">
+    <p>Copyright@Group3</p>
+  </div>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
+// CONVERT zip code to lat and long //
 function convertLocation(location) {
-    var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyCkioyz1epNmUDEt2m_AnGPVYsD89b-E3g"
+    var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAidckZDfScayrad0X24a9nUStcfP_OvHc"
     var location = {zipcode}
 
 
@@ -43,6 +44,7 @@ $(".add-item").on("submit", function addBucketItem () {
   });
 };
 
+// DELETE Bucket List Item //    
 $(".delete-item").on("click", function(event) {
   var id = $(this).data("id");
 
