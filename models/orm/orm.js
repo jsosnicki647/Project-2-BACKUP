@@ -10,6 +10,7 @@ const orm = {
         })
     },
     selectAUsersItems: (id, isComplete, cb) => {
+        console.log("HERE")
         let statement = "select activityID, a.activityDescription, b.completeByDate from bridge as b left join activities as a on a.id = b.activityID where b.userID = " + id + " and completed = " + isComplete + " order by completeByDate"
         connection.query(statement, (err, data) => {
             if (err) throw err
