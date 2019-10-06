@@ -22,7 +22,7 @@ function convertLocation(location) {
 
 
 // ADD Bucket List Item //    
-$(".add-item").on("submit", function addBucketItem () {
+$(".add-item").on("submit", function addBucketItem (event) {
     event.preventDefault();
 
     var newItem = {
@@ -45,6 +45,38 @@ $(".add-item").on("submit", function addBucketItem () {
     );
   });
 };
+
+$(".sign-up").on("submit"), () => {
+  let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + $(".zip-code").val().trim() + "&key=AIzaSyAidckZDfScayrad0X24a9nUStcfP_OvHc"
+
+  let lat, lon
+  
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+  .then((response) => {
+      lat = response.results[0].geometry.location.lat
+      lon = response.results[0].geometry.location.lon
+
+      let newUser = {
+        firstName: $(".first-name").val().trim(),
+        lastName: $(".last-name").val().trim(),
+        userName: $(".username").val().trim(),
+        email: $(".email-address").val().trim(),
+        lat: lat,
+        lon: lon
+      }
+
+      $.ajax("api/adduser", {
+        type: "POST",
+        data: newUser
+      })
+      .then((data) => console.log(data))
+  
+  })
+  
+
 
 
 // DELETE Bucket List Item //    
