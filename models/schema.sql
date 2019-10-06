@@ -26,11 +26,13 @@ primary key(id)
 );
 
 create table bridge(
+id int auto_increment,
 userID int not null,
 activityID int not null,
 completeByDate date,
 completed boolean default false,
 foreign key (userID) references users(id),
-foreign key (activityID) references activities(id)
+foreign key (activityID) references activities(id),
+primary key(id)
 );
 

@@ -10,12 +10,19 @@ const orm = {
         })
     },
     selectAUsersItems: (id, isComplete, cb) => {
-        console.log("HERE")
         let statement = "select activityID, a.activityDescription, b.completeByDate from bridge as b left join activities as a on a.id = b.activityID where b.userID = " + id + " and completed = " + isComplete + " order by completeByDate"
         connection.query(statement, (err, data) => {
             if (err) throw err
             console.log(data)
             cb(data)        
+        })
+    },
+    insertIntoBridgeTable: (userID, activityID, completeBy, cb) => {
+        let statement = "INSERT INTO bridge (userID, activityID, completeByDate) VALUES (?,?,?)"
+        connection.query(statement, [userID, activityID, completeBy], (err, data) => {
+            if (err) throw err
+            console.log(data)
+            cb(data)
         })
     }
 }
