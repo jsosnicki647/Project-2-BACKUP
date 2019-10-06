@@ -44,3 +44,4 @@ $(".add-item").on("submit", function addBucketItem () {
     );
   });
 };
+

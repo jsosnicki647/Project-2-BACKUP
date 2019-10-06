@@ -45,25 +45,14 @@ module.exports = function (app) {
                   }
                 })
                 .then((data2) => {
-                  
-                  // console.log(req.body)
                   newActivityID = data2[0].id
-                  // console.log(data2[0].id)
-                  // date = Date.parse(req.body.deadline)
-                  console.log(req.body.userid)
-                  console.log(newActivityID)
-                  console.log(req.body.deadline)
-                  db.Bridge.create({
-                    userID: req.body.userid,
-                    activityID: newActivityID,
-                    completeByDate: req.body.deadline
-                  })
-                  .then((data3) => {
-                      console.log(data3)
-                      res.json(data3)
-                    })
+                  orm.insertIntoBridgeTable (req.body.userid, newActivityID, req.body.deadline, (data) => res.json(data))
                 })
             })
+        }
+        else {
+          activityID = data1[0].id
+          orm.insertIntoBridgeTable (req.body.userid, activityID, req.body.deadline, (data) => res.json(data))
         }
       })
   })
