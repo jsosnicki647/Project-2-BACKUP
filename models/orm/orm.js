@@ -16,6 +16,14 @@ const orm = {
             console.log(data)
             cb(data)        
         })
+    },
+    insertIntoBridgeTable: (userID, activityID, completeBy, cb) => {
+        let statement = "INSERT INTO bridge (userID, activityID, completeByDate) VALUES (?,?,?)"
+        connection.query(statement, [userID, activityID, completeBy], (err, data) => {
+            if (err) throw err
+            console.log(data)
+            cb(data)
+        })
     }
 }
 
