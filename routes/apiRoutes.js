@@ -9,18 +9,18 @@ module.exports = function (app) {
 
   // add new user
   app.post("/api/adduser", (req, res) => {
-    db.users.create({
+    db.Users.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         userName: req.body.userName,
         email: req.body.email,
         lat: req.body.lat,
-        lon: req.body.lon,
-        surveyQ1: req.body.surveyQ1,
-        surveyQ2: req.body.surveyQ2,
-        surveyQ3: req.body.surveyQ3,
-        surveyQ4: req.body.surveyQ4,
-        surveyQ5: req.body.surveyQ5
+        lon: req.body.lon
+        // surveyQ1: req.body.surveyQ1,
+        // surveyQ2: req.body.surveyQ2,
+        // surveyQ3: req.body.surveyQ3,
+        // surveyQ4: req.body.surveyQ4,
+        // surveyQ5: req.body.surveyQ5
       })
       .then((data) => res.json(data))
   })
