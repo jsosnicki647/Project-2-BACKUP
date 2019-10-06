@@ -46,6 +46,7 @@ $(".add-item").on("submit", function addBucketItem () {
   });
 };
 
+
 // DELETE Bucket List Item //    
 $(".delete-item").on("click", function(event) {
   var id = $(this).data("id");
@@ -61,5 +62,4 @@ $(".delete-item").on("click", function(event) {
     }
   );
 });
-
 
