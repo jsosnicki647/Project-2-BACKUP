@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "Ir0cky00",
+  password: "Jeannie63",
   database: "bucket_besties_db"
 });
 
