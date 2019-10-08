@@ -128,7 +128,6 @@ $("#complete-item").on("click", function completeItem(event) {
   );
 });
 
-<<<<<<< HEAD
 // DISPLAY User Info //
 function getUserInfo() {
 $.ajax("/api/user", {
@@ -138,6 +137,22 @@ $.ajax("/api/user", {
 
   })
 }
+
+
+// Display User's Bucket List
+$.ajax("api/useritems", {
+  type: "GET"
+})
+.then()
+}
+
+// DISPLAY Top 10 Trending Items //
+$.ajax("api/top", {
+    type: "GET"
+  })
+  .then()
+}
+
 
 // Display User's Bucket List
 $.ajax("api/useritems", {
@@ -159,7 +174,13 @@ $.ajax("api/nearbyusers", {
 })
 .then()
 }
-=======
 
 
->>>>>>> 613ac29a7c71526dc48cc57019e4534880c68c46
+// DISPLAY Nearby Users with similar bucket list items //
+$.ajax("api/nearbyusers", {
+  type: "GET"
+})
+.then()
+}
+
+
