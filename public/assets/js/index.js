@@ -128,6 +128,7 @@ $("#complete-item").on("click", function completeItem(event) {
   );
 });
 
+<<<<<<< HEAD
 // DISPLAY User Info //
 function getUserInfo() {
 $.ajax("/api/user", {
@@ -158,3 +159,7 @@ $.ajax("api/nearbyusers", {
 })
 .then()
 }
+=======
+
+
+>>>>>>> 613ac29a7c71526dc48cc57019e4534880c68c46
