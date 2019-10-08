@@ -9,8 +9,14 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"
+        integrity="sha256-ujE/ZUB6CMZmyJSgQjXGCF4sRRneOimQplBVLu8OU5w=" crossorigin="anonymous" />
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="assets/styles/styles.css">
+
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -18,10 +24,12 @@
 
     <!-- Firebase Core JavaScript Link -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+
     <!-- Specific Firebase products we want (Database) -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/`firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js"></script>
+
     <!-- GeoFire Database -->
     <script src="https://cdn.firebase.com/libs/geofire/5.0.1/geofire.min.js"></script>
 
@@ -29,77 +37,157 @@
     <script src="assets/js/firebaseconfig.js"></script>
     <script src="assets/js/index.js"></script>
 
+    <!-- Font Awesome-->
+    <script src="https://kit.fontawesome.com/d6f681d40e.js" crossorigin="anonymous"></script>
+
     <title>Profile - Bucket Besties</title>
+
 </head>
 
 <body>
 
-
-    <div class="jumbotron">
+    <div class="jumbotron jumbotron-fluid">
         <h1 class="title">Bucket Besties!</h1>
-        <p class="slogan">Grab your buddy and explore the world!</p>
+        <p class="slogan">Grab a bestie and explore the world!</p>
     </div>
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
-
         <div id="navbarBasicExample" class="navbar-menu">
             <header class="container masthead">
                 <div class="row" id="navigation">
                     <div class="col">
                         <p>Profile</p>
                     </div>
-                    <div class="col">
-                        <p>My List</p>
-                    </div>
-                    <div class="col">
-                        <p>Trends</p>
-                    </div>
-                    <div class="col">
-                        <p>Find Others</p>
-                    </div>
                 </div>
             </header>
         </div>
     </nav>
 
-    <div class="containerProfile">
-        <div class="profileBox">
-        <p class="name">Name</p>
-        <p class="username">Username</p>
-        <p class="location">Location</p>
-    </div>
-</div>
-
-
-    <div class="container">
-        <div class="add-item">
-            <label class="label">Add an Item to Your Bucket List</label>
-            <div class="control">
-
-                <input class="inputBucketItem" type="text" placeholder="What would you like to do?">
+    <div class="tile is-ancestor">
+        <div class="tile is-4 is-vertical is-parent">
+            <div class="tile is-child box">
+                <div class="profileBox">My Profile</p>
+                    <p class="name">Name</p>
+                    <p class="username">Username</p>
+                    <p class="location">Location</p>
+                </div>
             </div>
-            <div class="selectBucketType">
-
-                <select>
-                    <option>Category</option>
-                    <option>Activity</option>
-                    <option>Education</option>
-                    <option>Entertainment</option>
-                    <option>Social</option>
-                    <option>Travel</option>
-                </select>
+            <div class="tile is-child box">
+                <div class="add-item">
+                    <label class="label">Add an Item to Your Bucket List</label>
+                    <div class="control">
+                        <input class="inputBucketItem" type="text" placeholder="What would you like to do?"
+                            style="color:black;">
+                    </div>
+                    <div class="selectBucketType">
+                        <select>
+                            <option>Category</option>
+                            <option>Activity</option>
+                            <option>Education</option>
+                            <option>Entertainment</option>
+                            <option>Social</option>
+                            <option>Travel</option>
+                        </select>
+                    </div>
+                    <div class="control">
+                        <input class="inputDeadline" type="date" placeholder="When will you do this by?"
+                            style="color:black;">
+                    </div>
+                    <button class="submit">Add</button>
+                </div>
             </div>
-
-            <button class="submit">Add</button>
+        </div>
+        <div class="tile is-parent">
+            <div class="tile is-child box">
+                <div class="container">
+                    <h2>My Bucket List</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Type of Activity</th>
+                                <th scope="col">Deadline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="item"></td>
+                                <td class="activity"></td>
+                                <td class="deadline"></td>
+                                <td class="buttons">
+                                    <a class="button is-small">
+                                        <span class="icon is-small">
+                                            <i class="fas fa-check-square" id="complete-item" alt="Completed"></i>
+                                        </span>
+                                    </a>
+                                    <a class="button is-small">
+                                        <span class="icon is-small">
+                                            <i class="fas fa-window-close" id="delete-item" alt="Delete"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tile is-child box">
+                <div class="container">
+                    <h2>Top Ten Bucket List Items in Your Area</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Type of Activity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="item"></td>
+                                <td class="activity"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-
-    <footer id="footer">
-            <div class="container">
-              Copyright @Group 3
+    <div class="tile is-ancestor">
+            <div class="tile is-4 is-vertical is-parent">
+                <div class="tile is-child box">
+     
+    <div id="contact-form">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">From</label>
             </div>
-          </footer>
-        
+            <div class="field-body">
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="email">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">To</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="email" placeholder="Recipient email">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <textarea class="textarea" placeholder="Your Message" rows="15"></textarea>
+    </div>
+
+    <!-- <div class="footer">
+        <p>Copyright@Group3</p>
+    </div>
+ -->
 
 
 </body>
