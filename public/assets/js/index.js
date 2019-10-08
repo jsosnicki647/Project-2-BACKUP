@@ -22,48 +22,87 @@ $(".sign-up").on("submit"), () => {
         lon: lon
       }
 
-      $.ajax("api/adduser", {
-        type: "POST",
-        data: newUser
-      })
-      .then((data) => console.log(data))
-  
-  })
+      $.ajax("/api/adduser", {
+          type: "POST",
+          data: newUser
+        })
+        .then((data) => console.log(data))
+
+    })
 }
+
+$(document).ready(function() {
+  // Getting a reference to the input field where user adds a new todo
+  var newItemInput = $("input.new-item");
+  // Our new todos will go inside the todoContainer
+  var $todoContainer = $(".todo-container");
+  // Adding event listeners for deleting, editing, and adding todos
+  $(document).on("click", "button.delete", deleteTodo);
+  $(document).on("click", "button.complete", toggleComplete);
+  $(document).on("click", ".todo-item", editTodo);
+  $(document).on("keyup", ".todo-item", finishEdit);
+  $(document).on("blur", ".todo-item", cancelEdit);
+  $(document).on("submit", "#todo-form", insertTodo);
+
+  // Our initial todos array
+  var todos = [];
+
+  // Getting todos from database when page loads
+  getTodos();
+
+  // This function resets the todos displayed with new todos from the database
+  function initializeRows() {
+    $todoContainer.empty();
+    var rowsToAdd = [];
+    for (var i = 0; i < todos.length; i++) {
+      rowsToAdd.push(createNewRow(todos[i]));
+    }
+    $todoContainer.prepend(rowsToAdd);
+  }
+
+
+  // GRAB Bucket Items from the database and updates the view
+  function getBucketItems() {
+    $.get("/api/useritems", function(data) {
+      items = data;
+      initializeRows();
+    });
+  }
+
 
 
 // ADD Bucket List Item //    
-$(".add-item").on("submit", function addBucketItem (event) {
-    event.preventDefault();
+$(".add-item").on("submit", function addBucketItem(event) {
+  event.preventDefault();
 
-    var newItem = {
-      userid: 1, //need to get logged in user's id
-      item: $(".inputBucketItem").val().trim(),
-      type: $(".selectBucketType").val().trim(),
-      deadline: $(".inputDeadline").val().trim()
-    };
+  var newItem = {
+    userid: 1, //need to get logged in user's id
+    item: $(".inputBucketItem").val().trim(),
+    type: $(".selectBucketType").val().trim(),
+    deadline: $(".inputDeadline").val().trim()
+  };
 
-    // Send the POST request.
-    $.ajax("/api/newitem", {
-      type: "POST",
-      data: newItem
-    }).then(
-      function() {
-        console.log("created new bucket list item");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
+  // Send the POST request.
+  $.ajax("/api/newitem", {
+    method: "POST",
+    data: newItem
+  }).then(
+    function () {
+      console.log("created new bucket list item");
+      // Reload the page to get the updated list
+      location.reload();
+    }
+  );
+});
 
 
 // DELETE Bucket List Item //    
-$("#delete-item").on("click", function (event) {
+$("#delete-item").on("click", function deleteBucketItem (event) {
+  event.stopPropagation();
   var id = $(this).data("id");
-
   // Send the DELETE request.
-  $.ajax("/api/###" + id, {
-    type: "DELETE"
+  $.ajax("/api/useritems" + id, {
+    method: "DELETE"
   }).then(
     function () {
       console.log("deleted item", id);
@@ -77,7 +116,7 @@ $("#delete-item").on("click", function (event) {
 $("#complete-item").on("click", function (event) {
   var id = $(this).data("id");
 
-  // Send the DELETE request.
+  // Send the PUT request.
   $.ajax("/api/complete" + id, {
     type: "PUT"
   }).then(
@@ -89,10 +128,33 @@ $("#complete-item").on("click", function (event) {
   );
 });
 
+// DISPLAY User Info //
+function getUserInfo() {
+$.ajax("/api/user", {
+    type: "GET"
+  })
+  .then((response) => {
 
-// DISPLAY Top Trending Items //
+  })
+}
 
+// Display User's Bucket List
+$.ajax("api/useritems", {
+  type: "GET"
+})
+.then()
+}
 
+// DISPLAY Top 10 Trending Items //
+$.ajax("api/top", {
+    type: "GET"
+  })
+  .then()
+}
 
-
-// 
+// DISPLAY Nearby Users with similar bucket list items //
+$.ajax("api/nearbyusers", {
+  type: "GET"
+})
+.then()
+}
