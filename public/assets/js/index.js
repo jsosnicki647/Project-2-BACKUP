@@ -33,9 +33,9 @@ $(".sign-up").on("submit"), () => {
 
 $(document).ready(function() {
   // Getting a reference to the input field where user adds a new todo
-  var newItemInput = $("input.new-item");
+  var newItemInput = $(".itemTable");
   // Our new todos will go inside the todoContainer
-  var $todoContainer = $(".todo-container");
+  var bucketContainer = $(".bucketContainer");
   // Adding event listeners for deleting, editing, and adding todos
   $(document).on("click", "button.delete", deleteTodo);
   $(document).on("click", "button.complete", toggleComplete);
@@ -44,20 +44,20 @@ $(document).ready(function() {
   $(document).on("blur", ".todo-item", cancelEdit);
   $(document).on("submit", "#todo-form", insertTodo);
 
-  // Our initial todos array
-  var todos = [];
+  // Our initial items array
+  var items = [];
 
-  // Getting todos from database when page loads
-  getTodos();
+  // Getting items from database when page loads
+  getBucketItems();
 
   // This function resets the todos displayed with new todos from the database
   function initializeRows() {
-    $todoContainer.empty();
+    bucketContainer.empty();
     var rowsToAdd = [];
-    for (var i = 0; i < todos.length; i++) {
+    for (var i = 0; i < items.length; i++) {
       rowsToAdd.push(createNewRow(todos[i]));
     }
-    $todoContainer.prepend(rowsToAdd);
+    bucketContainer.prepend(rowsToAdd);
   }
 
 
@@ -81,7 +81,6 @@ $(".add-item").on("submit", function addBucketItem(event) {
     type: $(".selectBucketType").val().trim(),
     deadline: $(".inputDeadline").val().trim()
   };
-
   // Send the POST request.
   $.ajax("/api/newitem", {
     method: "POST",
@@ -113,7 +112,8 @@ $("#delete-item").on("click", function deleteBucketItem (event) {
 });
 
 // COMPLETE Bucket List Item //
-$("#complete-item").on("click", function (event) {
+$("#complete-item").on("click", function completeItem(event) {
+  event.stopPropagation();
   var id = $(this).data("id");
 
   // Send the PUT request.
