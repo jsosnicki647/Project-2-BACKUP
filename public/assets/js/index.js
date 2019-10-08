@@ -138,6 +138,22 @@ $.ajax("/api/user", {
   })
 }
 
+
+// Display User's Bucket List
+$.ajax("api/useritems", {
+  type: "GET"
+})
+.then()
+}
+
+// DISPLAY Top 10 Trending Items //
+$.ajax("api/top", {
+    type: "GET"
+  })
+  .then()
+}
+
+
 // Display User's Bucket List
 $.ajax("api/useritems", {
   type: "GET"
@@ -158,3 +174,16 @@ $.ajax("api/nearbyusers", {
 })
 .then()
 }
+<<<<<<< HEAD
+=======
+
+
+// DISPLAY Nearby Users with similar bucket list items //
+$.ajax("api/nearbyusers", {
+  type: "GET"
+})
+.then()
+}
+
+
+>>>>>>> 31dee1f7725e0ea3f650eac29ebd604f5048058e
