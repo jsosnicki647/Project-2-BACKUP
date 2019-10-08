@@ -48,7 +48,7 @@ $(".sign-up").on("submit"), () => {
         lat: lat,
         lon: lon
       }
-
+      console.log(newUser)
       $.ajax("api/adduser", {
         type: "POST",
         data: newUser
