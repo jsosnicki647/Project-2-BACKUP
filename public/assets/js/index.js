@@ -94,4 +94,3 @@ $(".delete-item").on("click", function(event) {
     }
   );
 });
-
