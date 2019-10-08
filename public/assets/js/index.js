@@ -1,28 +1,4 @@
-// CONVERT zip code to lat and long //
-function convertLocation(location) {
-  var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAidckZDfScayrad0X24a9nUStcfP_OvHc"
-  var location = {
-    zipcode
-  }
-
-  $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-    .then(function (response) {
-      var lat = response.results[0].geometry.location.lat
-      var lng = response.results[0].geometry.location.lng
-      var coord = new google.maps.LatLng(lat, lng)
-
-      database.ref().push({
-        lat: lat,
-        lng: lng,
-        address: location
-      });
-    });
-};
-
-// SIGN-UP New User //
+// ADD new user
 $(".sign-up").on("submit"), () => {
   let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + $(".zip-code").val().trim() + "&key=AIzaSyAidckZDfScayrad0X24a9nUStcfP_OvHc"
 
@@ -41,48 +17,44 @@ $(".sign-up").on("submit"), () => {
         lastName: $(".last-name").val().trim(),
         userName: $(".username").val().trim(),
         email: $(".email-address").val().trim(),
+        zip: $(".zip-code").val().trim(),
         lat: lat,
         lon: lon
       }
 
       $.ajax("api/adduser", {
-          type: "POST",
-          data: newUser
-        })
-        .then((data) => console.log(data))
-    });
-};
-
-
-// DISPLAY User data in profile box on profile page //
-$(".profileBox").on()
+        type: "POST",
+        data: newUser
+      })
+      .then((data) => console.log(data))
+  
+  })
+}
 
 
 // ADD Bucket List Item //    
-$(".add-item").on("submit", function addBucketItem(event) {
-  event.preventDefault();
+$(".add-item").on("submit", function addBucketItem (event) {
+    event.preventDefault();
 
-  var newItem = {
-    userid: 1, //need to get logged in user's id
-    item: $(".inputBucketItem").val().trim(),
-    type: $(".selectBucketType").val().trim(),
-    deadline: $(".inputDeadline").val().trim()
-  };
+    var newItem = {
+      userid: 1, //need to get logged in user's id
+      item: $(".inputBucketItem").val().trim(),
+      type: $(".selectBucketType").val().trim(),
+      deadline: $(".inputDeadline").val().trim()
+    };
 
-  // Send the POST request.
-  $.ajax("/api/newitem", {
-    type: "POST",
-    data: newItem
-  }).then(
-    function () {
-      console.log("created new cabucket lilst itemt");
-      // Reload the page to get the updated list
-      location.reload();
-    }
-  );
-});
-
-
+    // Send the POST request.
+    $.ajax("/api/newitem", {
+      type: "POST",
+      data: newItem
+    }).then(
+      function() {
+        console.log("created new bucket list item");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 
 
 // DELETE Bucket List Item //    
@@ -100,8 +72,6 @@ $("#delete-item").on("click", function (event) {
     }
   );
 });
-
-
 
 // COMPLETE Bucket List Item //
 $("#complete-item").on("click", function (event) {
@@ -121,3 +91,8 @@ $("#complete-item").on("click", function (event) {
 
 
 // DISPLAY Top Trending Items //
+
+
+
+
+// 

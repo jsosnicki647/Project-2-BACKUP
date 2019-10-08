@@ -4,8 +4,15 @@ const orm = require("../models/orm/orm")
 module.exports = function (app) {
   //get top 10 bucket list items
   app.get("/api/top", (req, res) => orm.selectTopTen((data) => res.json(data)))
-
+  
+  //get a specific user's item list
   app.get("/api/useritems", (req, res) => orm.selectAUsersItems(req.body.userID, req.body.isComplete, (data) => res.json(data)))
+
+  //get data for a specific user
+  app.get("/api/user", (req, res) => orm.selectUser(req.body.userID, (data) => res.json(data)))
+
+  //find nearby users with one of your bucket list items
+  app.get("/api/nearbyusers", (req, res) => orm.nearbyUsersWithSameInterests(req.body.userID, req.body.activityID, (data) => res.json(data))) 
 
   // add new user
   app.post("/api/adduser", (req, res) => {
@@ -14,6 +21,7 @@ module.exports = function (app) {
         lastName: req.body.lastName,
         userName: req.body.userName,
         email: req.body.email,
+        zip: req.body.zip,
         lat: req.body.lat,
         lon: req.body.lon
         // surveyQ1: req.body.surveyQ1,
@@ -33,6 +41,7 @@ module.exports = function (app) {
         }
       })
       .then((data1) => {
+        //add new item to activities table if not already present
         if (data1.length == 0) {
           db.Activities.create({
               activityDescription: req.body.item,
@@ -56,8 +65,7 @@ module.exports = function (app) {
         }
       })
   })
-            
-
+  
   // mark activity as complete
   app.put("/api/complete/", (req, res) => {
     console.log(req.body);
