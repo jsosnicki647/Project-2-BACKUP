@@ -11,7 +11,7 @@
 <body style="padding-bottom:100px;">
 	
 	<!-- LOGIN FORM 'Page' -->
-	<form style="width:500px;margin:0 auto;margin-top:40px; " id="loginForm">
+	<form action ="/api/adduser" method ="post" style="width:500px;margin:0 auto;margin-top:40px; " id="loginForm">
 
 		
 
@@ -24,24 +24,24 @@
 		<!-- FIRST NAME -->
 		<div class="form-group">
 		    <label for="formGroupExampleInput2">First Name</label>
-		    <input type="text" class="form-control" id="firstname" placeholder="First Name">
+		    <input name ="firstName" type="text" class="form-control" id="firstname" placeholder="First Name">
 		 </div>
 
 		 <!-- LAST NAME -->
 		 <div class="form-group">
 		    <label for="formGroupExampleInput2">Last Name</label>
-		    <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+		    <input name ="lastName" type="text" class="form-control" id="lastname" placeholder="Last Name">
 		  </div>
 
 		  <!-- USERNAME -->
 		  <div class="form-group">
 		    <label for="formGroupExampleInput2">Username</label>
-		    <input type="text" class="form-control" id="username" placeholder="Username">
+		    <input name ="userName" type="text" class="form-control" id="username" placeholder="Username">
 		  </div>
 
 		  <div class="form-group">
 		    <label for="formGroupExampleInput2">Zip Code</label>
-		    <input type="text" class="form-control" id="zipcode" placeholder="Zip Code">
+		    <input name ="zipCode" type="text" class="form-control" id="zipcode" placeholder="Zip Code">
 		  </div>
 
 
@@ -55,7 +55,7 @@
 			    <input id="passwordInput" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 			  </div>
 			  
-			  <button onclick="signup();return false;" type="submit" class="btn btn-primary" style="width:100%;">Submit</button>
+			  <button class="sign-up" onclick="signup();return false;" type="submit" class="btn btn-primary" style="width:100%;">Submit</button>
 
 
 			  <ul class="tab-group" style="list-style: none;">
@@ -114,6 +114,10 @@
 
 <script>
   // Your web app's Firebase configuration
+//  var userId =  require("myscript.js")
+
+// console.log(userId)
+
   var firebaseConfig = {
     apiKey: "AIzaSyDxCQp7aTXoAlRb2nhW6lZLEEN0ZfAmo0w",
     authDomain: "bucket-besties-51cb3.firebaseapp.com",
@@ -130,10 +134,12 @@
 
 
   var db = firebase.firestore();
-
+  var user = firebase.auth().currentUser;
+console.log(user.uid)
 
 </script>
   </script>
 	<script type="text/javascript" src="myScript.js"></script>
+	<script type="text/javascript" src="./assets/js/index.js"></script>
 </body>
 </html>

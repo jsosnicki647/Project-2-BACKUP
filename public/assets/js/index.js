@@ -1,6 +1,6 @@
 // ADD new user
 $(".sign-up").on("submit"), () => {
-  let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + $(".zip-code").val().trim() + "&key=AIzaSyAidckZDfScayrad0X24a9nUStcfP_OvHc"
+  let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + $("#zipcode").val().trim() + "&key=AIzaSyAidckZDfScayrad0X24a9nUStcfP_OvHc"
 
   let lat, lon
 
@@ -17,7 +17,7 @@ $(".sign-up").on("submit"), () => {
         lastName: $(".last-name").val().trim(),
         userName: $(".username").val().trim(),
         email: $(".email-address").val().trim(),
-        zip: $(".zip-code").val().trim(),
+        zip: $("#zipcode").val().trim(),
         lat: lat,
         lon: lon
       }
@@ -37,12 +37,12 @@ $(document).ready(function() {
   // Our new todos will go inside the todoContainer
   var bucketContainer = $(".bucketContainer");
   // Adding event listeners for deleting, editing, and adding todos
-  $(document).on("click", "button.delete", deleteTodo);
-  $(document).on("click", "button.complete", toggleComplete);
-  $(document).on("click", ".todo-item", editTodo);
-  $(document).on("keyup", ".todo-item", finishEdit);
-  $(document).on("blur", ".todo-item", cancelEdit);
-  $(document).on("submit", "#todo-form", insertTodo);
+  // $(document).on("click", "button.delete", deleteTodo);
+  // $(document).on("click", "button.complete", toggleComplete);
+  // $(document).on("click", ".todo-item", editTodo);
+  // $(document).on("keyup", ".todo-item", finishEdit);
+  // $(document).on("blur", ".todo-item", cancelEdit);
+  // $(document).on("submit", "#todo-form", insertTodo);
 
   // Our initial items array
   var items = [];
@@ -128,59 +128,49 @@ $("#complete-item").on("click", function completeItem(event) {
   );
 });
 
-// DISPLAY User Info //
-function getUserInfo() {
-$.ajax("/api/user", {
-    type: "GET"
-  })
-  .then((response) => {
+// // DISPLAY User Info //
+// function getUserInfo() {
+// $.ajax("/api/user", {
+//     type: "GET"
+//   })
+//   .then((response) => {
 
-  })
-}
+//   })
+// }
 
 
-// Display User's Bucket List
-$.ajax("api/useritems", {
-  type: "GET"
+// // Display User's Bucket List
+// $.ajax("api/useritems", {
+//   type: "GET"
+// })
+// .then()
+// }
+
+// // DISPLAY Top 10 Trending Items //
+// $.ajax("api/top", {
+//     type: "GET"
+//   })
+//   .then()
+// }
+
+
+// // Display User's Bucket List
+// $.ajax("api/useritems", {
+//   type: "GET"
+// })
+// .then()
+// }
+
+// // DISPLAY Top 10 Trending Items //
+// $.ajax("api/top", {
+//     type: "GET"
+//   })
+//   .then()
+// }
+
+// // DISPLAY Nearby Users with similar bucket list items //
+// $.ajax("api/nearbyusers", {
+//   type: "GET"
+// })
+// .then()
 })
-.then()
-}
-
-// DISPLAY Top 10 Trending Items //
-$.ajax("api/top", {
-    type: "GET"
-  })
-  .then()
-}
-
-
-// Display User's Bucket List
-$.ajax("api/useritems", {
-  type: "GET"
-})
-.then()
-}
-
-// DISPLAY Top 10 Trending Items //
-$.ajax("api/top", {
-    type: "GET"
-  })
-  .then()
-}
-
-// DISPLAY Nearby Users with similar bucket list items //
-$.ajax("api/nearbyusers", {
-  type: "GET"
-})
-.then()
-}
-
-
-// DISPLAY Nearby Users with similar bucket list items //
-$.ajax("api/nearbyusers", {
-  type: "GET"
-})
-.then()
-}
-
-
