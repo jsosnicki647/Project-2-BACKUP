@@ -1,4 +1,4 @@
-// ADD new user
+// ADD new user ---->>> should this block live in myscript.js??
 $(".sign-up").on("submit"), () => {
   let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + $("#zipcode").val().trim() + "&key=AIzaSyAidckZDfScayrad0X24a9nUStcfP_OvHc"
 
@@ -31,48 +31,47 @@ $(".sign-up").on("submit"), () => {
     })
 }
 
-$(document).ready(function() {
-  // Getting a reference to the input field where user adds a new todo
-  var newItemInput = $(".itemTable");
-  // Our new todos will go inside the todoContainer
-  var bucketContainer = $(".bucketContainer");
-  // Adding event listeners for deleting, editing, and adding todos
-  // $(document).on("click", "button.delete", deleteTodo);
-  // $(document).on("click", "button.complete", toggleComplete);
-  // $(document).on("click", ".todo-item", editTodo);
-  // $(document).on("keyup", ".todo-item", finishEdit);
-  // $(document).on("blur", ".todo-item", cancelEdit);
-  // $(document).on("submit", "#todo-form", insertTodo);
 
-  // Our initial items array
-  var items = [];
+///////////////////////// ADD, DELETE, COMPLETE Bucket Items //////////////////////
+$(document).ready(function () {
+// Getting a reference to the input field where user adds a new item
+var newItemInput = $(".itemTable");
+// New items will go inside the bucketContainer
+var bucketContainer = $(".bucketContainer");
+// Adding event listeners for deleting, editing, and adding todos
+$(document).on("submit", "#add-item", addBucketItem);
+$(document).on("click", "#complete-item", completeItem);
+$(document).on("click", "#delete-item", deleteBucketItem);
 
-  // Getting items from database when page loads
-  getBucketItems();
+// Initial items array
+var items = [];
 
-  // This function resets the todos displayed with new todos from the database
-  function initializeRows() {
-    bucketContainer.empty();
-    var rowsToAdd = [];
-    for (var i = 0; i < items.length; i++) {
-      rowsToAdd.push(createNewRow(todos[i]));
-    }
-    bucketContainer.prepend(rowsToAdd);
+// Getting user info and bucket items from database when page loads
+getUserInfo();
+getBucketItems();
+
+// This function resets the todos displayed with new todos from the database
+function initializeRows() {
+  bucketContainer.empty();
+  var rowsToAdd = [];
+  for (var i = 0; i < items.length; i++) {
+    rowsToAdd.push(createNewRow(todos[i]));
   }
+  bucketContainer.prepend(rowsToAdd);
+}
 
 
-  // GRAB Bucket Items from the database and updates the view
-  function getBucketItems() {
-    $.get("/api/useritems", function(data) {
-      items = data;
-      initializeRows();
-    });
-  }
-
+// GRAB Bucket Items from the database and updates the view
+function getBucketItems() {
+  $.get("/api/useritems", function (data) {
+    items = data;
+    initializeRows();
+  });
+};
 
 
 // ADD Bucket List Item //    
-$(".add-item").on("submit", function addBucketItem(event) {
+function addBucketItem(event) {
   event.preventDefault();
 
   var newItem = {
@@ -82,95 +81,53 @@ $(".add-item").on("submit", function addBucketItem(event) {
     deadline: $(".inputDeadline").val().trim()
   };
   // Send the POST request.
-  $.ajax("/api/newitem", {
-    method: "POST",
-    data: newItem
-  }).then(
-    function () {
-      console.log("created new bucket list item");
-      // Reload the page to get the updated list
-      location.reload();
-    }
-  );
-});
-
+  $.post("/api/newitem", newItem, getBucketItems);
+  newItemInput.val("");
+  console.log(newItem)
+};
 
 // DELETE Bucket List Item //    
-$("#delete-item").on("click", function deleteBucketItem (event) {
+function deleteBucketItem(event) {
   event.stopPropagation();
   var id = $(this).data("id");
   // Send the DELETE request.
   $.ajax("/api/useritems" + id, {
     method: "DELETE"
-  }).then(
-    function () {
-      console.log("deleted item", id);
-      // Reload the page to get the updated list
-      location.reload();
-    }
-  );
-});
+  }).then(getBucketItems);
+  console.log("deleted item", id);
+};
 
 // COMPLETE Bucket List Item //
-$("#complete-item").on("click", function completeItem(event) {
+function completeItem(event) {
   event.stopPropagation();
   var id = $(this).data("id");
-
   // Send the PUT request.
   $.ajax("/api/complete" + id, {
     type: "PUT"
-  }).then(
-    function () {
-      console.log("completed item", id);
-      // Reload the page to get the updated list
-      location.reload();
-    }
-  );
+  }).then(getBucketItems)
+  console.log("completed item", id);
+};
 });
 
-// // DISPLAY User Info //
-// function getUserInfo() {
-// $.ajax("/api/user", {
-//     type: "GET"
-//   })
-//   .then((response) => {
-
-//   })
-// }
+// DISPLAY User Info //
+var userInfo = []
+function getUserInfo() {
+$.get("/api/user", function(data) {
+   userInfo = data;
+  });
+};
 
 
-// // Display User's Bucket List
-// $.ajax("api/useritems", {
-//   type: "GET"
-// })
-// .then()
-// }
+//////////////////////////////////////////////////////////
+
 
 // // DISPLAY Top 10 Trending Items //
-// $.ajax("api/top", {
-//     type: "GET"
-//   })
-//   .then()
-// }
-
-
-// // Display User's Bucket List
-// $.ajax("api/useritems", {
-//   type: "GET"
-// })
-// .then()
-// }
-
-// // DISPLAY Top 10 Trending Items //
-// $.ajax("api/top", {
-//     type: "GET"
+// $.get("api/top", {
 //   })
 //   .then()
 // }
 
 // // DISPLAY Nearby Users with similar bucket list items //
-// $.ajax("api/nearbyusers", {
-//   type: "GET"
+// $.get("api/nearbyusers", {
 // })
 // .then()
-})
